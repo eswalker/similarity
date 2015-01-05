@@ -56,8 +56,6 @@ public class MapReduceIntegration extends Configured implements Tool {
         TextOutputFormat.setOutputPath(job, new Path(out));
         job.setMapOutputKeyClass(LongWritable.class);
         job.setMapOutputValueClass(Text.class);
-      //  job.setOutputKeyClass(NullWritable.class);
-     //   job.setOutputValueClass(Text.class);
         return job.waitForCompletion(true) ? 0 : 1;
 
     }
