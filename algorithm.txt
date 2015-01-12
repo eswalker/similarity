@@ -1,0 +1,51 @@
+input str the input string
+      threshold the edit distance threshold
+      alphabet the list of characters in alphabet
+
+index(str, threshold, alphabet) returns Set<int>
+	set = empty set
+	arr = int[length(alphabet)]
+	for i = 0:(length(str)-1)
+		if str[i] in alphabet
+			arr[alphabet.get(str[i])]++;
+	editOperations(arr, set)
+	return set
+
+editOperations(arr, set, threshold)
+	set.add(hash(arr))
+	if threshold is <= 0
+		return
+	
+	for i = 0:(length(arr)-1)
+		arr[i] = arr[i] + 1
+		editOperations(arr, set, threshold - 2)
+		arr[i] = arr[i] - 2
+		editOperations(arr, set, threshold - 2)
+		arr[i] = arr[i] + 1
+	
+	for i = 0:(length(arr)-1)
+		for j = 0:(length(arr)-1)
+			arr[i] = arr[i] - 1
+			arr[j] = arr[j] + 1
+		     editOperations(arr, set, threshold - 2)
+			arr[i] = arr[i] + 1
+			arr[j] = arr[j] - 1
+
+hash(arr) returns int
+	val = 0
+	for i = 0:(length(arr)-1)
+		val = val * 31 + arr[i]
+	return val
+	
+
+
+
+
+
+
+
+	
+		
+	
+	
+
